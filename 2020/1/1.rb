@@ -1,1 +1,1 @@
-p $<.map(&:to_i).combination(2).map{|a,b|[a,b,a+b]}.select{|a|a[2]==2020}.map{|a,b|a*b}
+p $<.map(&:to_i).combination(2).map{|a|{numbers: a, sum: a.sum}}.select{|a|a[:sum]==2020}.map{|a|a[:numbers].inject(:*)}
