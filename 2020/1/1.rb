@@ -1,0 +1,1 @@
+p $<.map(&:to_i).combination(2).map{|a,b|[a,b,a+b]}.select{|a|a[2]==2020}.map{|a,b|a*b}
