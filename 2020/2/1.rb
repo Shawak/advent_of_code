@@ -16,5 +16,4 @@ p $<.map{|e|
 }
 .count{|e|
     e[:valid]
-    
 }
