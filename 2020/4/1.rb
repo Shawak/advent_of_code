@@ -1,6 +1,6 @@
 pp=$<.read.chomp.split("\n\n")
   .map{|e|
-    e.split(/[\s,\n]/)
+    e.split(/[\s\n]/)
     .map{|x|
       t=x.split(':')
       {t[0].intern => t[1]}
