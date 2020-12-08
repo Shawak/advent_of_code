@@ -1,3 +1,3 @@
 # Advent of Code
 
-My solutions for [adventofcode](https://adventofcode.com).
+My solutions for [adventofcode.com](https://adventofcode.com).
