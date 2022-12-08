@@ -17,11 +17,10 @@ r=(1...a.size-1).map{|y|
         view=[
             (x...a.size).drop(1).map{|n|a[y][n]}.take_until{|v|v>=a[y][x]}, #right
             x.downto(0).drop(1).map{|n|a[y][n]}.take_until{|v|v>=a[y][x]},  #left
-            (y...a.size).drop(1).map{|n|a[n][x]}.take_until{|v|v>=a[y][x]}, #bottom?
-            y.downto(0).drop(1).map{|n|a[n][x]}.take_until{|v|v>=a[y][x]}   #top?
+            (y...a.size).drop(1).map{|n|a[n][x]}.take_until{|v|v>=a[y][x]}, #bottom
+            y.downto(0).drop(1).map{|n|a[n][x]}.take_until{|v|v>=a[y][x]}   #top
         ]
         score=view.map{|a|a.size}.inject :*
-        #p [x: x, y: y, val: a[y][x], view: view, score: score]
         [x: x, y: y, val: a[y][x], view: view, score: score]
     }
 }
