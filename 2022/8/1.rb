@@ -7,9 +7,7 @@ r=(1...a.size-1).map{|y|
             (y...a.size).drop(1).map{|n|a[n][x]}.all?{|v|v<a[y][x]},
             y.downto(0).drop(1).map{|n|a[n][x]}.all?{|v|v<a[y][x]}
         ].any? true
-        #p [x, y, visible, a[y][x]]
         visible ? 1 : 0
     }
 }
-#p r
 p r.flatten.sum+(a.size*4-4)
