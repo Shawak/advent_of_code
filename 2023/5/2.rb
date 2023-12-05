@@ -1,7 +1,11 @@
+$/ = "END"  
+input=$<.gets
+
 seeds=input.scan(/seeds:\s(.*?)\n/).first.first.split.map &:to_i
 maps=(input + "\n").scan(/^(?<name>[\w-]*?) map:\n(?<values>(.|\n)*?)\n\n/m).map{|x|
     [x[0], x[1].split("\n").map{|x|x.split(" ").map(&:to_i)}.map{|v| {to: v[0], from: v[1], range: v[2]}}]
 }.map{|x|[x[0], x[1]]}.to_h
+map_keys=maps.keys.reverse.to_a
 
 transform=->val,arr{
     arr.size.times{|i|
@@ -17,14 +21,16 @@ max = maps["humidity-to-location"]
     .map{|loc|loc[:to]+loc[:range]}
     .max
 
-loc_to_seeds = [*0..max]
-    .map{|x|
-        orig=x
-        maps.keys.reverse.map{|map|
-            x = transform[x, maps[map]]
-        }
-        {loc: orig, seed: x}
+i=0
+loop do
+    x = i
+    map_keys.map{|map|
+        x = transform[x, maps[map]]
     }
-    .sort_by{|x|x[:loc]}
-
-p loc_to_seeds.find{|x| seeds.find{|seed| x[:seed].between?(seed[:from], seed[:to])} }[:loc]
+    res = seeds.find{|seed| x.between?(seed[:from], seed[:to])}
+    if res then
+        p i
+        break
+    end
+    i+=1
+end
