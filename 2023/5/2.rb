@@ -17,10 +17,6 @@ transform=->val,arr{
 
 seeds = seeds.each_slice(2).to_a.map{|x| {from: x[0], to: x[0]+x[1]} }
 
-max = maps["humidity-to-location"]
-    .map{|loc|loc[:to]+loc[:range]}
-    .max
-
 i=0
 loop do
     x = i
